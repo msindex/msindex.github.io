@@ -7,9 +7,22 @@
 <body>
     The login has been completed!
     <script type="text/javascript">
-        (function() {
+        function sleep(seconds) {
+            var e = new Date().getTime() + (seconds * 1000);
+            while (new Date().getTime() <= e) { }
+        }
+
+
+
+        (function () {
+            //sleep(10);
             const opener = window.opener;
             const message = `nav|${window.location.href}`; // special message containing requested url
+            console.log(message);
+            console.log(opener);
+            console.log(parent);
+            console.log(parent.window);
+            console.log(parent.window.opener);
 
             try {
                 if (opener && opener.location && opener.location.origin) {
@@ -18,10 +31,16 @@
                     opener.postMessage(message, origin);
                 }
             }
-            catch(err) {
+            catch (err) {
             }
 
             window.localStorage.setItem("__UadoToken", message);
+            //setTimeout(function () {
+            //    debugger;
+            //}, 10000);
+
+            //setTimeout(function () { debugger; }, 100000);
+
             window.close();
         })();
     </script>
